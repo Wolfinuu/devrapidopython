@@ -71,8 +71,8 @@ class App:
         self.termo_busca_aluno_entry.grid(row=2, column=1, padx=5, pady=5, sticky='w')
         self.setup_placeholder(self.termo_busca_aluno_entry, "Nome ou Matrícula")
 
-        ttk.Button(frame_controles, text="Filtrar", command=self.buscar_alunos).grid(row=2, column=2, padx=5, pady=5) # Alterado
-        ttk.Button(frame_controles, text="Limpar Filtro", command=self.limpar_busca_alunos).grid(row=2, column=3, padx=5, pady=5) # Alterado
+        ttk.Button(frame_controles, text="Filtrar", command=self.buscar_alunos).grid(row=2, column=2, padx=5, pady=5)
+        ttk.Button(frame_controles, text="Limpar Filtro", command=self.limpar_busca_alunos).grid(row=2, column=3, padx=5, pady=5)
 
 
         frame_botoes = ttk.Frame(frame_controles)
@@ -94,7 +94,7 @@ class App:
         for aluno in alunos_para_exibir:
             self.lista_alunos.insert(tk.END, f"ID: {aluno[0]} - {aluno[1]} ({aluno[2]})")
 
-    def buscar_alunos(self): # Nome da função permanece, mas o botão agora é "Filtrar"
+    def buscar_alunos(self):
         termo = self.termo_busca_aluno_entry.get().strip()
         if termo == "Nome ou Matrícula":
             termo = ""
@@ -105,7 +105,7 @@ class App:
         else:
             self.atualizar_lista_alunos()
 
-    def limpar_busca_alunos(self): # Nome da função permanece, mas o botão agora é "Limpar Filtro"
+    def limpar_busca_alunos(self):
         self.termo_busca_aluno_entry.delete(0, tk.END)
         self.setup_placeholder(self.termo_busca_aluno_entry, "Nome ou Matrícula")
         self.atualizar_lista_alunos()
@@ -211,8 +211,8 @@ class App:
         self.termo_busca_disciplina_entry.grid(row=2, column=1, padx=5, pady=5, sticky='w')
         self.setup_placeholder(self.termo_busca_disciplina_entry, "Nome ou Código")
 
-        ttk.Button(frame_controles, text="Filtrar", command=self.buscar_disciplinas).grid(row=2, column=2, padx=5, pady=5) # Alterado
-        ttk.Button(frame_controles, text="Limpar Filtro", command=self.limpar_busca_disciplinas).grid(row=2, column=3, padx=5, pady=5) # Alterado
+        ttk.Button(frame_controles, text="Filtrar", command=self.buscar_disciplinas).grid(row=2, column=2, padx=5, pady=5)
+        ttk.Button(frame_controles, text="Limpar Filtro", command=self.limpar_busca_disciplinas).grid(row=2, column=3, padx=5, pady=5)
 
 
         frame_botoes = ttk.Frame(frame_controles)
@@ -234,7 +234,7 @@ class App:
         for d in disciplinas_para_exibir:
             self.lista_disciplinas.insert(tk.END, f"ID: {d[0]} - {d[1]} ({d[2]})")
 
-    def buscar_disciplinas(self): # Nome da função permanece, mas o botão agora é "Filtrar"
+    def buscar_disciplinas(self):
         termo = self.termo_busca_disciplina_entry.get().strip()
         if termo == "Nome ou Código":
             termo = ""
@@ -245,7 +245,7 @@ class App:
         else:
             self.atualizar_lista_disciplinas()
 
-    def limpar_busca_disciplinas(self): # Nome da função permanece, mas o botão agora é "Limpar Filtro"
+    def limpar_busca_disciplinas(self):
         self.termo_busca_disciplina_entry.delete(0, tk.END)
         self.setup_placeholder(self.termo_busca_disciplina_entry, "Nome ou Código")
         self.atualizar_lista_disciplinas()
@@ -341,7 +341,7 @@ class App:
         frame_controles.pack(pady=10, fill='x')
 
         ttk.Label(frame_controles, text="Para incluir/alterar, use o ID do aluno e da disciplina. Para filtrar, use o nome do aluno ou da disciplina.",
-                  font=('Arial', 9, 'italic'), foreground='blue').grid(row=0, column=0, columnspan=4, sticky='w', pady=5) # Alterado o texto
+                  font=('Arial', 9, 'italic'), foreground='blue').grid(row=0, column=0, columnspan=4, sticky='w', pady=5) 
 
         tk.Label(frame_controles, text="ID Aluno:").grid(row=1, column=0, sticky='w', pady=5)
         self.aluno_id_entry = ttk.Entry(frame_controles, width=15)
@@ -360,9 +360,8 @@ class App:
         self.termo_busca_nota_entry.grid(row=3, column=1, padx=5, pady=5, sticky='w')
         self.setup_placeholder(self.termo_busca_nota_entry, "Nome do Aluno ou Disciplina")
 
-        ttk.Button(frame_controles, text="Filtrar", command=self.buscar_notas).grid(row=3, column=2, padx=5, pady=5) # Alterado
-        ttk.Button(frame_controles, text="Limpar Filtro", command=self.limpar_busca_notas).grid(row=3, column=3, padx=5, pady=5) # Alterado
-
+        ttk.Button(frame_controles, text="Filtrar", command=self.buscar_notas).grid(row=3, column=2, padx=5, pady=5) 
+        ttk.Button(frame_controles, text="Limpar Filtro", command=self.limpar_busca_notas).grid(row=3, column=3, padx=5, pady=5) 
         frame_botoes = ttk.Frame(frame_controles)
         frame_botoes.grid(row=4, column=0, columnspan=4, pady=10)
 
@@ -382,7 +381,7 @@ class App:
         for n in notas_para_exibir:
             self.lista_notas.insert(tk.END, f"ID: {n[0]} - Aluno: {n[1]} | Disciplina: {n[2]} | Nota: {n[3]:.2f}")
 
-    def buscar_notas(self): # Nome da função permanece, mas o botão agora é "Filtrar"
+    def buscar_notas(self): 
         termo = self.termo_busca_nota_entry.get().strip()
         if termo == "Nome do Aluno ou Disciplina":
             termo = ""
@@ -393,7 +392,7 @@ class App:
         else:
             self.atualizar_lista_notas()
 
-    def limpar_busca_notas(self): # Nome da função permanece, mas o botão agora é "Limpar Filtro"
+    def limpar_busca_notas(self): 
         self.termo_busca_nota_entry.delete(0, tk.END)
         self.setup_placeholder(self.termo_busca_nota_entry, "Nome do Aluno ou Disciplina")
         self.atualizar_lista_notas()

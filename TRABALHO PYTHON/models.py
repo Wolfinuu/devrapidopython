@@ -42,7 +42,7 @@ def buscar_alunos(termo_busca):
     if conn:
         cursor = conn.cursor()
         try:
-            # Busca por nome ou matrícula, case-insensitive
+            # Busca por nome ou matrícula
             cursor.execute("SELECT * FROM aluno WHERE nome LIKE ? OR matricula LIKE ? ORDER BY nome ASC",
                            (f"%{termo_busca}%", f"%{termo_busca}%"))
             dados = cursor.fetchall()
@@ -60,7 +60,7 @@ def alterar_aluno(matricula_antiga, novo_nome, nova_matricula):
     if conn:
         cursor = conn.cursor()
         try:
-            # Primeiro, encontra o aluno pelo ID para obter o ID real
+            # Encontra o aluno pelo ID para obter o ID real
             cursor.execute("SELECT id FROM aluno WHERE matricula = ?", (matricula_antiga,))
             aluno_data = cursor.fetchone()
             if not aluno_data:
@@ -71,7 +71,7 @@ def alterar_aluno(matricula_antiga, novo_nome, nova_matricula):
             cursor.execute("UPDATE aluno SET nome = ?, matricula = ? WHERE id = ?", (novo_nome, nova_matricula, id_aluno))
             conn.commit()
             if cursor.rowcount == 0:
-                # Este caso é pouco provável com a busca por ID, mas mantemos
+                # Exceção para caso não tenha matrícula
                 messagebox.showwarning("Aviso", "Nenhum aluno encontrado com a matrícula especificada para alteração.")
                 return False
             return True
@@ -138,8 +138,7 @@ def listar_disciplinas():
             conn.close()
     return []
 
-# Não é necessário buscar disciplina por nome, pois o código já é único e pode ser usado para busca.
-# No entanto, podemos adicionar uma função de busca se for útil para filtrar a lista.
+# Busca de disciplina
 def buscar_disciplinas(termo_busca):
     conn = conectar()
     if conn:

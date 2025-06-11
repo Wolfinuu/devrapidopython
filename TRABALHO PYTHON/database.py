@@ -1,5 +1,5 @@
 import sqlite3
-from tkinter import messagebox # Importar messagebox para exibir erros
+from tkinter import messagebox # Importar messagebox para exibir erros (tratamento de exceção)
 
 def conectar():
     try:
